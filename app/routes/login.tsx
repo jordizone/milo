@@ -2,6 +2,7 @@ import { redirect, data } from 'react-router'
 import type { Route } from './+types/login'
 import { createClient } from '~/utils/supabase/server'
 import LoginForm from '~/components/login-form'
+import { Card } from '~/components/ui/card'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -48,7 +49,9 @@ export async function action({ request }: Route.ActionArgs) {
 
 export default function Login({ actionData }: Route.ComponentProps) {
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-4">
+    <div className="mt-20 flex h-screen w-full flex-col gap-4">
+      <h1 className="font-display text-6xl font-black">Milo</h1>
+      <LoginForm />
       {actionData?.error && (
         <div
           style={{
@@ -63,7 +66,6 @@ export default function Login({ actionData }: Route.ComponentProps) {
           {actionData.error}
         </div>
       )}
-      <LoginForm />
     </div>
   )
 }
