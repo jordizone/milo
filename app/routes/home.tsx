@@ -1,6 +1,7 @@
 import { redirect } from 'react-router'
 import type { Route } from './+types/home'
 import { createClient } from '~/utils/supabase/server'
+import { Button } from '~/components/ui/button'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -32,12 +33,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       </h1>
       <p className="text-gray-600">Welcome, {loaderData.user.email}!</p>
       <form method="post" action="/logout">
-        <button
-          type="submit"
-          className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
-        >
+        <Button type="submit" variant="destructive">
           Logout
-        </button>
+        </Button>
       </form>
     </div>
   )

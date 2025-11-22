@@ -1,6 +1,7 @@
 import { redirect, data } from 'react-router'
 import type { Route } from './+types/login'
 import { createClient } from '~/utils/supabase/server'
+import LoginForm from '~/components/login-form'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -47,9 +48,7 @@ export async function action({ request }: Route.ActionArgs) {
 
 export default function Login({ actionData }: Route.ComponentProps) {
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto', padding: '2rem' }}>
-      <h1>Login</h1>
-
+    <div className="flex h-screen flex-col items-center justify-center gap-4">
       {actionData?.error && (
         <div
           style={{
@@ -64,66 +63,7 @@ export default function Login({ actionData }: Route.ComponentProps) {
           {actionData.error}
         </div>
       )}
-
-      <form method="post">
-        <div style={{ marginBottom: '1rem' }}>
-          <label
-            htmlFor="email"
-            style={{ display: 'block', marginBottom: '0.5rem' }}
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              fontSize: '1rem',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-            }}
-          />
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label
-            htmlFor="password"
-            style={{ display: 'block', marginBottom: '0.5rem' }}
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              fontSize: '1rem',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-            }}
-          />
-        </div>
-        <button
-          type="submit"
-          style={{
-            width: '100%',
-            padding: '0.75rem',
-            fontSize: '1rem',
-            backgroundColor: '#007bff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          Login
-        </button>
-      </form>
+      <LoginForm />
     </div>
   )
 }
