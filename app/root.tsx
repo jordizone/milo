@@ -50,7 +50,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <main className="mx-auto max-w-sm">{children}</main>
+        <main>{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>

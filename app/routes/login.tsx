@@ -1,8 +1,7 @@
-import { redirect, data } from 'react-router'
-import type { Route } from './+types/login'
-import { createClient } from '~/utils/supabase/server'
+import { data, redirect } from 'react-router'
 import LoginForm from '~/components/login-form'
-import { Card } from '~/components/ui/card'
+import { createClient } from '~/utils/supabase/server'
+import type { Route } from './+types/login'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -49,22 +48,11 @@ export async function action({ request }: Route.ActionArgs) {
 
 export default function Login({ actionData }: Route.ComponentProps) {
   return (
-    <div className="mt-20 flex h-screen w-full flex-col gap-4">
-      <h1 className="font-display text-6xl font-black">Milo</h1>
+    <div className="mx-auto flex h-screen w-full max-w-sm flex-col items-center justify-center gap-4 p-10">
+      <h1 className="text-2xl font-bold">Sign in</h1>
       <LoginForm />
       {actionData?.error && (
-        <div
-          style={{
-            padding: '1rem',
-            marginBottom: '1rem',
-            backgroundColor: '#fee',
-            border: '1px solid #fcc',
-            borderRadius: '4px',
-            color: '#c33',
-          }}
-        >
-          {actionData.error}
-        </div>
+        <div className="text-red-500">{actionData.error}</div>
       )}
     </div>
   )

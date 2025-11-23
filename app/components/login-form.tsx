@@ -37,7 +37,7 @@ export default function LoginForm() {
       </FieldSet>
       <div className="mt-4 flex justify-end">
         <Button type="submit" className="hover:cursor-pointer">
-          Login
+          Get started
         </Button>
       </div>
     </form>
