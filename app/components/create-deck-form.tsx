@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useFetcher } from 'react-router'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
+import { Spinner } from './ui/spinner'
 
 export function CreateDeckForm() {
   const fetcher = useFetcher()
@@ -31,7 +32,7 @@ export function CreateDeckForm() {
         required
       />
       <Button type="submit" disabled={fetcher.state !== 'idle'}>
-        {fetcher.state !== 'idle' ? 'Creating...' : 'Create'}
+        {fetcher.state !== 'idle' ? <Spinner /> : 'Create'}
       </Button>
     </fetcher.Form>
   )

@@ -31,12 +31,6 @@ export default function AuthenticatedLayout() {
     <SidebarProvider>
       <AppSidebar user={user} decks={decks} />
       <main className="flex min-h-screen w-full flex-col">
-        <header className="flex h-16 items-center border-b border-gray-200 p-4">
-          <div className="flex items-center">
-            <SidebarTrigger />
-            <h1 className="ml-4">Name deck</h1>
-          </div>
-        </header>
         <Outlet />
       </main>
     </SidebarProvider>

@@ -21,6 +21,7 @@ import LogoutForm from './logout-form'
 import { CreateDeckForm } from './create-deck-form'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 import { Button } from './ui/button'
+import { DeskList } from './desk-list'
 
 interface AppSidebarProps {
   user: User
@@ -29,10 +30,10 @@ interface AppSidebarProps {
 
 export function AppSidebar({ user, decks }: AppSidebarProps) {
   return (
-    <Sidebar>
+    <Sidebar className="border-r-2 border-dashed">
       <SidebarHeader className="flex h-16 justify-center border-b border-gray-200">
         <div className="flex items-baseline justify-between">
-          <h1 className="text-lg font-bold">flashcards</h1>
+          <h1 className="text-lg font-bold">Milo</h1>
           <span className="text-xs text-gray-400">v1.0.0</span>
         </div>
       </SidebarHeader>
@@ -56,11 +57,7 @@ export function AppSidebar({ user, decks }: AppSidebarProps) {
           </Popover>
         </SidebarGroup>
         <SidebarGroup>
-          {decks.map((deck) => (
-            <SidebarMenuItem key={deck.id}>
-              <SidebarMenuButton>{deck.name}</SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+          <DeskList decks={decks} />
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
@@ -77,7 +74,7 @@ export function AppSidebar({ user, decks }: AppSidebarProps) {
                 side="top"
                 className="w-[271px] md:w-[239px]"
               >
-                <DropdownMenuItem>
+                <DropdownMenuItem className="p-0">
                   <LogoutForm />
                 </DropdownMenuItem>
               </DropdownMenuContent>

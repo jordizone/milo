@@ -1,6 +1,6 @@
 import { redirect } from 'react-router'
-import type { Route } from '../+types/root'
 import { createClient } from '~/utils/supabase/server'
+import type { Route } from './+types/create-deck'
 
 export async function action({ request }: Route.ActionArgs) {
   const { supabase } = createClient(request)
