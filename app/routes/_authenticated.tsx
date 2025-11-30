@@ -4,6 +4,8 @@ import { SidebarProvider, SidebarTrigger } from '~/components/ui/sidebar'
 import { createClient } from '~/utils/supabase/server'
 import { redirect, useLoaderData } from 'react-router'
 import type { Route } from './+types/_authenticated'
+import { Button } from '~/components/ui/button'
+import { CreateDeckDrawer } from '~/components/create-deck-drawer'
 
 export async function loader({ request }: Route.LoaderArgs) {
   const { supabase } = createClient(request)

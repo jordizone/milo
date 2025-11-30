@@ -49,7 +49,7 @@ export async function action({ request }: Route.ActionArgs) {
 export default function Login({ actionData }: Route.ComponentProps) {
   return (
     <div className="mx-auto flex h-screen w-full max-w-sm flex-col items-center justify-center gap-4 p-10">
-      <h1 className="text-2xl font-bold">Sign in</h1>
+      <h1 className="font-mono text-2xl font-medium">Sign in</h1>
       <LoginForm />
       {actionData?.error && (
         <div className="text-red-500">{actionData.error}</div>

@@ -38,6 +38,10 @@ export const links: Route.LinksFunction = () => [
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap',
   },
+  {
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap',
+  },
 ]
 
 export function Layout({ children }: { children: React.ReactNode }) {

@@ -1,9 +1,11 @@
 import { redirect, useLoaderData } from 'react-router'
+import { EmptyCards } from '~/components/empty-cards'
 import { createClient } from '~/utils/supabase/server'
 import type { Route } from './+types/$id'
 import { SidebarTrigger } from '~/components/ui/sidebar'
-import { EmptyCards } from '~/components/empty-cards'
-import { DropdownMenuDemo } from '~/components/dropdown-menu-demo'
+import { Button } from '~/components/ui/button'
+import { DeleteDeckDrawer } from '~/components/delete-deck-drawer'
+import { useState } from 'react'
 
 export function meta({ data }: Route.MetaArgs) {
   return [
@@ -53,16 +55,23 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 
 export default function DeckDetail() {
   const { deck, flashcards } = useLoaderData<typeof loader>()
+  const [deleteDeckDrawerOpen, setDeleteDeckDrawerOpen] = useState(false)
 
   return (
     <>
-      <header className="fixed top-0 flex h-16 w-full items-center border-b border-gray-200 p-4">
+      <header className="fixed top-0 flex h-16 w-full items-center justify-between border-b border-gray-200 p-4">
         <div className="flex items-center">
           <SidebarTrigger />
-          <h1 className="ml-4 text-lg">{deck.name}</h1>
+          <h1 className="ml-4 font-mono text-lg">{deck.name}</h1>
         </div>
+        <Button
+          onClick={() => setDeleteDeckDrawerOpen(true)}
+          variant="destructive"
+        >
+          Delete Deck
+        </Button>
       </header>
-      <main className="flex h-screen w-full flex-col p-4 pt-20">
+      <main className="flex h-screen w-full flex-col p-4 pt-20 font-mono">
         <div>
           {flashcards.length === 0 ? (
             <EmptyCards />
@@ -71,6 +80,11 @@ export default function DeckDetail() {
           )}
         </div>
       </main>
+      <DeleteDeckDrawer
+        open={deleteDeckDrawerOpen}
+        onOpenChange={setDeleteDeckDrawerOpen}
+        deckId={deck.id}
+      />
     </>
     // <div className="mt-4 flex h-screen w-full flex-col gap-4 p-4 md:mt-20">
     //   <div className="mb-4 flex items-center justify-between">

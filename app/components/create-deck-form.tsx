@@ -10,17 +10,16 @@ export function CreateDeckForm() {
 
   // Clear the input and refocus after successful submission
   useEffect(() => {
-    if (fetcher.state === 'idle' && fetcher.data && inputRef.current) {
-      inputRef.current.value = ''
+    if (inputRef.current) {
       inputRef.current.focus()
     }
-  }, [fetcher.state, fetcher.data])
+  }, [])
 
   return (
     <fetcher.Form
       method="post"
       action="/create-desk"
-      className="flex w-full items-center gap-2 hover:cursor-pointer"
+      className="flex w-full items-center gap-2 font-mono hover:cursor-pointer"
       onClick={(e) => e.stopPropagation()}
     >
       <Input
@@ -31,7 +30,11 @@ export function CreateDeckForm() {
         disabled={fetcher.state !== 'idle'}
         required
       />
-      <Button type="submit" disabled={fetcher.state !== 'idle'}>
+      <Button
+        className="bg-sky-500"
+        type="submit"
+        disabled={fetcher.state !== 'idle'}
+      >
         {fetcher.state !== 'idle' ? <Spinner /> : 'Create'}
       </Button>
     </fetcher.Form>

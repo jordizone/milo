@@ -37,7 +37,7 @@ export async function action({ request }: Route.ActionArgs) {
     )
 
     // Return success data - React Router will automatically revalidate loaders
-    return { success: true, deck: newDeck }
+    return redirect(`/deck/${newDeck.id}`)
   } catch (error) {
     console.error('Error creating deck:', error)
     return { error: 'Failed to create deck' }

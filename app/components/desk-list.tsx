@@ -14,6 +14,7 @@ import {
 } from '~/components/ui/dropdown-menu'
 import { MoreHorizontal, Trash2 } from 'lucide-react'
 import { Button } from './ui/button'
+import { DeleteDeckForm } from './delete-deck-form'
 
 interface Deck {
   id: string
@@ -41,23 +42,6 @@ export function DeskList({ decks }: DeskListProps) {
                 {deck.name}
               </Link>
             </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction className="hover:cursor-pointer">
-                  <MoreHorizontal />
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="right" align="start">
-                <DropdownMenuItem className="text-red-600 hover:cursor-pointer hover:bg-red-200">
-                  <Trash2 className="mr-2 h-4 w-4 text-red-600" />
-                  <form action={`/deck/delete-deck/${deck.id}`} method="post">
-                    <button type="submit">
-                      <span className="text-red-600">Delete</span>
-                    </button>
-                  </form>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </SidebarMenuItem>
         ))
       )}

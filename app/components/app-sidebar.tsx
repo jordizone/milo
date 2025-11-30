@@ -31,31 +31,13 @@ interface AppSidebarProps {
 export function AppSidebar({ user, decks }: AppSidebarProps) {
   return (
     <Sidebar className="border-r-2 border-dashed">
-      <SidebarHeader className="flex h-16 justify-center border-b border-gray-200">
+      <SidebarHeader className="flex h-16 justify-center border-gray-200">
         <div className="flex items-baseline justify-between">
           <h1 className="text-lg font-bold">Milo</h1>
           <span className="text-xs text-gray-400">v1.0.0</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button className="hover:cursor-pointer">
-                <Plus className="h-6 w-6" />
-                New Deck
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent
-              side="right"
-              className="z-10 mt-2 w-80 rounded-md border bg-white p-4"
-            >
-              <div className="">
-                <CreateDeckForm />
-              </div>
-            </PopoverContent>
-          </Popover>
-        </SidebarGroup>
         <SidebarGroup>
           <DeskList decks={decks} />
         </SidebarGroup>
