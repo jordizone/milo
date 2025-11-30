@@ -7,7 +7,7 @@ interface FlashcardListProps {
 
 export function FlashcardList({ flashcards }: FlashcardListProps) {
   return (
-    <div className="grid gap-4">
+    <div className="mb-10 grid gap-4">
       {flashcards.map((card) => (
         <Card key={card.id} className="font-mono">
           <CardContent className="flex flex-col gap-4 py-1">

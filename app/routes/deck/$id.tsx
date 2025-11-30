@@ -65,7 +65,7 @@ export default function DeckDetail() {
 
   return (
     <>
-      <header className="fixed top-0 flex h-16 w-full items-center justify-between border-b border-gray-200 p-4">
+      <header className="fixed top-0 z-10 flex h-16 w-full items-center justify-between border-b border-gray-200 bg-gray-50 p-4">
         <div className="flex items-center">
           <SidebarTrigger />
           <h1 className="ml-4 font-mono text-lg">{deck.name}</h1>
@@ -75,13 +75,13 @@ export default function DeckDetail() {
             onClick={() => setCreateFlashcardDrawerOpen(true)}
             className="bg-sky-500"
           >
-            Create Flashcard
+            Add Card
           </Button>
           <Button
             onClick={() => setDeleteDeckDrawerOpen(true)}
             variant="destructive"
           >
-            Delete Deck
+            Delete
           </Button>
         </div>
       </header>

@@ -12,13 +12,19 @@ interface CreateFlashcardFormProps {
 export function CreateFlashcardForm({ deckId }: CreateFlashcardFormProps) {
   const fetcher = useFetcher()
   const frontInputRef = useRef<HTMLInputElement>(null)
+  const backInputRef = useRef<HTMLTextAreaElement>(null)
 
-  // Clear the input and refocus after successful submission
   useEffect(() => {
-    if (frontInputRef.current) {
-      frontInputRef.current.focus()
+    if (fetcher.state === 'idle') {
+      if (frontInputRef.current) {
+        frontInputRef.current.value = ''
+        frontInputRef.current.focus()
+      }
+      if (backInputRef.current) {
+        backInputRef.current.value = ''
+      }
     }
-  }, [])
+  }, [fetcher.state])
 
   return (
     <fetcher.Form
@@ -49,6 +55,7 @@ export function CreateFlashcardForm({ deckId }: CreateFlashcardFormProps) {
           Back
         </label>
         <Textarea
+          ref={backInputRef}
           placeholder="Answer or explanation"
           name="back"
           id="back"
