@@ -5,7 +5,10 @@ import type { Route } from './+types/$id'
 import { SidebarTrigger } from '~/components/ui/sidebar'
 import { Button } from '~/components/ui/button'
 import { DeleteDeckDrawer } from '~/components/delete-deck-drawer'
+import { CreateFlashcardDrawer } from '~/components/create-flashcard-drawer'
+import { FlashcardList } from '~/components/flashcard-list'
 import { useState } from 'react'
+import { CardService } from '~/utils/database'
 
 export function meta({ data }: Route.MetaArgs) {
   return [
@@ -48,14 +51,17 @@ export async function loader({ request, params }: Route.LoaderArgs) {
   }
 
   // TODO: Fetch flashcards for this deck
-  // const flashcards = await flashcardService.getFlashcardsByDeckId(deckId)
+  const cardService = new CardService(supabase)
+  const flashcards = await cardService.getCards(deckId)
 
-  return { user, deck, flashcards: [] }
+  return { user, deck, flashcards }
 }
 
 export default function DeckDetail() {
   const { deck, flashcards } = useLoaderData<typeof loader>()
   const [deleteDeckDrawerOpen, setDeleteDeckDrawerOpen] = useState(false)
+  const [createFlashcardDrawerOpen, setCreateFlashcardDrawerOpen] =
+    useState(false)
 
   return (
     <>
@@ -64,25 +70,40 @@ export default function DeckDetail() {
           <SidebarTrigger />
           <h1 className="ml-4 font-mono text-lg">{deck.name}</h1>
         </div>
-        <Button
-          onClick={() => setDeleteDeckDrawerOpen(true)}
-          variant="destructive"
-        >
-          Delete Deck
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            onClick={() => setCreateFlashcardDrawerOpen(true)}
+            className="bg-sky-500"
+          >
+            Create Flashcard
+          </Button>
+          <Button
+            onClick={() => setDeleteDeckDrawerOpen(true)}
+            variant="destructive"
+          >
+            Delete Deck
+          </Button>
+        </div>
       </header>
       <main className="flex h-screen w-full flex-col p-4 pt-20 font-mono">
         <div>
           {flashcards.length === 0 ? (
-            <EmptyCards />
+            <EmptyCards
+              onCreateClick={() => setCreateFlashcardDrawerOpen(true)}
+            />
           ) : (
-            <div className="grid gap-4">{/* TODO: Render flashcards */}</div>
+            <FlashcardList flashcards={flashcards} />
           )}
         </div>
       </main>
       <DeleteDeckDrawer
         open={deleteDeckDrawerOpen}
         onOpenChange={setDeleteDeckDrawerOpen}
+        deckId={deck.id}
+      />
+      <CreateFlashcardDrawer
+        open={createFlashcardDrawerOpen}
+        onOpenChange={setCreateFlashcardDrawerOpen}
         deckId={deck.id}
       />
     </>

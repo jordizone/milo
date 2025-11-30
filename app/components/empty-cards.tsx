@@ -10,7 +10,11 @@ import {
   EmptyTitle,
 } from '~/components/ui/empty'
 
-export function EmptyCards() {
+interface EmptyCardsProps {
+  onCreateClick?: () => void
+}
+
+export function EmptyCards({ onCreateClick }: EmptyCardsProps) {
   return (
     <Empty>
       <EmptyHeader>
@@ -25,7 +29,7 @@ export function EmptyCards() {
       </EmptyHeader>
       <EmptyContent>
         <div className="flex gap-2">
-          <Button>Create Flashcard</Button>
+          <Button onClick={onCreateClick}>Create Flashcard</Button>
           <Button variant="outline">Import Flashcards</Button>
         </div>
       </EmptyContent>

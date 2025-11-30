@@ -6,6 +6,7 @@ export default [
     route("create-desk", "routes/deck/create-deck.tsx"),
     route("deck/:id", "routes/deck/$id.tsx"),
     route("delete-deck", "routes/deck/delete-deck.tsx"),
+    route("create-flashcard", "routes/flashcard/create-flashcard.tsx"),
   ]),
   route("login", "routes/login.tsx"),
   route("logout", "routes/logout.tsx"),
